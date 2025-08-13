@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Dashboard — Big Consultants Ltd</title>
+  <link rel="stylesheet" href="../styles/style.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <!-- This file has been renamed to admin.html -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <h1>Admin Dashboard</h1>
+      <button id="logout-btn" class="btn small">Log Out</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- LOGIN FORM -->
+    <section id="login-section">
+      <h2>Admin Login</h2>
+      <form id="login-form">
+        <label>Email</label>
+        <input type="email" id="admin-email" required />
+        <label>Password</label>
+        <input type="password" id="admin-password" required />
+        <button type="submit" class="btn primary">Login</button>
+      </form>
+      <div id="login-feedback" class="muted"></div>
+    </section>
+
+    <!-- DASHBOARD SECTION -->
+    <section id="dashboard-section" style="display:none;">
+      <h2>Contact Form Submissions</h2>
+      <div id="submissions-list" class="grid"></div>
+
+      <h2>Manage Projects</h2>
+      <form id="project-form">
+        <label>Project Title</label>
+        <input type="text" id="project-title" required />
+        <label>Description</label>
+        <textarea id="project-desc" required></textarea>
+        <label>Category</label>
+        <select id="project-category" required>
+          <option value="completed">Completed</option>
+          <option value="ongoing">Ongoing</option>
+        </select>
+        <label>Media URL (image/video)</label>
+        <input type="url" id="project-media" required />
+        <button type="submit" class="btn primary">Add Project</button>
+      </form>
+
+      <div id="projects-list" class="grid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Big Consultants Ltd — Admin</small>
+    </div>
+  </footer>
+
+  <script src="admin.js"></script>
+</body>
+</html>

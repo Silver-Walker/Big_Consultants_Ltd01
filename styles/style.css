@@ -1,0 +1,326 @@
+/* ================================
+   STYLES.CSS — Big Consultants Ltd
+   Applies to both index.html & admin.html
+   ================================ */
+
+/* Color & Spacing Variables */
+:root {
+  --accent: #0b5fff;
+  --dark: #0b1320;
+  --muted: #6b7280;
+  --bg: #f8fafc;
+  --card-bg: #ffffff;
+  --maxw: 1100px;
+  --gap: 1rem;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+  color: var(--dark);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+body.admin-bg {
+  background: linear-gradient(120deg, #2d51c4 0%, #5ca3ea 100%);
+}
+
+.container {
+  width: calc(100% - 2rem);
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 1.5rem 0;
+}
+
+/* ================================
+   HEADER & NAVIGATION
+================================ */
+.site-header {
+  background: var(--card-bg);
+  box-shadow: 0 1px 6px rgba(10, 10, 10, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  height: 46px;
+  display: block;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.site-nav {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: var(--dark);
+  padding: .45rem .75rem;
+  border-radius: 6px;
+}
+
+.site-nav a:hover {
+  background: #f1f5f9;
+}
+
+/* ================================
+   HERO SECTION
+================================ */
+.hero {
+  background: linear-gradient(180deg, rgba(11,95,255,0.06), rgba(193,230,255,0.03));
+  padding: 3rem 0;
+}
+
+.hero-inner {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.hero-copy {
+  flex: 1;
+  min-width: 260px;
+}
+
+.hero-copy h1 {
+  font-size: 2rem;
+  margin: .25rem 0 1rem;
+}
+
+.hero-copy p {
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.hero-image img {
+  max-width: 420px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ================================
+   SECTIONS & CARDS
+================================ */
+.section {
+  padding: 1.5rem 0;
+  background: var(--card-bg);
+  margin-top: 1rem;
+  border-radius: var(--radius);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.services-grid {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid #eef2f7;
+  padding: 1rem;
+  border-radius: 6px;
+  min-height: 120px;
+}
+
+/* ================================
+   PROJECTS & MEDIA
+================================ */
+.projects-tabs {
+  display: flex;
+  gap: .5rem;
+  margin: 1rem 0;
+}
+
+.tab-btn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: .45rem .8rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.tab-btn.active {
+  background: var(--accent);
+  color: white;
+}
+
+.projects-panel {
+  display: none;
+}
+
+.projects-panel.active {
+  display: block;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin-top: .75rem;
+}
+
+.project-item {
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 18px rgba(12, 17, 39, 0.04);
+}
+
+.project-item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.project-meta {
+  padding: .75rem;
+}
+
+.project-meta h4 {
+  margin: .25rem 0;
+  font-size: 1rem;
+}
+
+.project-meta p {
+  color: var(--muted);
+  font-size: .95rem;
+}
+
+/* ================================
+   CONTACT FORM
+================================ */
+.contact-form label {
+  display: block;
+  margin-bottom: .5rem;
+}
+
+.contact-form input,
+.contact-form textarea,
+.contact-form select {
+  width: 100%;
+  padding: .6rem;
+  border: 1px solid #e6eef8;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background: white;
+}
+
+.btn {
+  display: inline-block;
+  padding: .6rem 1rem;
+  border-radius: 6px;
+  border: 0;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.primary {
+  background: var(--accent);
+  color: white;
+}
+
+.small {
+  padding: .35rem .6rem;
+  font-size: .9rem;
+}
+
+/* ================================
+   ADMIN DASHBOARD
+================================ */
+#dashboard-section {
+  background: var(--card-bg);
+  padding: 1rem;
+  border-radius: var(--radius);
+}
+
+#submissions-list,
+#projects-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.admin-card {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: var(--radius);
+  background: white;
+}
+
+/* ================================
+   FOOTER
+================================ */
+.site-footer {
+  padding: 1rem 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: .9rem;
+  margin-top: 1rem;
+}
+
+/* ================================
+   RESPONSIVE NAVIGATION
+================================ */
+@media (max-width: 900px) {
+  .hero-copy h1 {
+    font-size: 1.5rem;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-nav {
+    display: none;
+    flex-direction: column;
+    background: white;
+    position: absolute;
+    right: 1rem;
+    top: 64px;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(10, 10, 10, .08);
+  }
+
+  .site-nav.open {
+    display: flex;
+  }
+}

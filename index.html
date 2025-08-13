@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Big Consultants Ltd — Project Evaluation & Advisory (Kisumu)</title>
+  <meta name="description" content="Big Consultants Ltd — project evaluation, feasibility studies and monitoring based in Kisumu." />
+  <link rel="stylesheet" href="styles/style.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <!-- HEADER — Milestone: Core Development Setup -->
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="#home">
+        <img src="assets/logo.svg" alt="Big Consultants Ltd logo" class="logo" />
+      </a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO — Milestone: Visual Design -->
+    <section id="home" class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 style="color: #f9fafc; font-size: 2.2rem; font-weight: 600; letter-spacing: -0.5px;">Evaluating projects for sustainable impact</h1>
+          <p class="muted">
+            With over two decades of expertise, we specialize in project planning, monitoring & evaluation, policy analysis, and more.
+          </p>
+          <a class="btn primary" href="#projects">See Our Work</a>
+          <a class="btn" href="#contact">Get In Touch</a>
+        </div>
+        <div class="hero-image">
+          <img src="assets/hero.jpg" alt="Project evaluation illustration" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT — Milestone: Content Setup -->
+    <section id="about" class="section about">
+      <div class="container">
+        <h2>About Big Consultants Ltd</h2>
+        <p class="muted">
+          Based in Kisumu, we offer consultancy services including feasibility studies, impact assessments, and strategic advisory.
+        </p>
+        <p><strong>Vision:</strong> Provide professional, comprehensive solutions to development actors from policy to delivery of impact.</p>
+        <p><strong>Mission:</strong> Deliver tailored consultancy services that improve community wellbeing, governance, and accountability.</p>
+      </div>
+    </section>
+
+  
+<!--
+  Custom, from-scratch implementation of a "Platform" section inspired by the
+  layout and feature list visible on the Lliffton Analytica website. This is NOT
+  copied code; it is original HTML/CSS/JS you can use freely.
+
+  How to use:
+  1) Drop this whole block anywhere inside your page <body>.
+  2) Keep the <style> block in your <head> or leave it here for a self‑contained snippet.
+  3) Replace placeholder SVGs/images and text as needed.
+
+  Features:
+  • Responsive grid (1 → 2 → 3 columns)
+  • Clean, modern card design with subtle hover/keyboard focus effects
+  • Accessible structure & semantics (landmark, headings, roles, aria labels)
+  • Optional intersection-based reveal animation (no external libs)
+-->
+
+<style>
+  :root {
+    --bg: #0c0c0cea;         /* base background */
+    --surface: #0f1520;    /* card background */
+    --surface-2: #0b111a;  /* subtle contrast */
+    --text: #e6edf3;       /* primary text */
+    --muted: #9fb2c3;      /* secondary text */
+    --brand: #4fc3f7;      /* accent */
+    --brand-2: #61d0a8;    /* accent alt */
+    --ring: #7dd3fc;       /* focus ring */
+    --shadow: 0 10px 30px rgba(89, 85, 85, 0.35);
+  }
+
+  /* Section wrapper */
+  
+  .platform-section {
+    background: radial-gradient(1200px 600px at 10% -10%, rgba(97,208,168,.08), transparent 60%),
+                radial-gradient(1000px 500px at 90% -10%, rgba(79,195,247,.08), transparent 55%),
+                var(--bg);
+    color: var(--text);
+    padding: clamp(2rem, 4vw, 4rem) 1.25rem;
+    position: relative;
+    overflow: clip;
+    isolation: isolate;
+  }
+
+  .platform-container {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .platform-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .35rem .6rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgba(79,195,247,.15), rgba(97,208,168,.15));
+    color: var(--muted);
+    font-size: .875rem;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+  }
+
+  .platform-title {
+    font-size: clamp(1.75rem, 1.1rem + 2.5vw, 3rem);
+    line-height: 1.1;
+    margin: .75rem 0 1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .platform-lede {
+    color: var(--muted);
+    max-width: 65ch;
+    font-size: clamp(1rem, .95rem + .3vw, 1.125rem);
+  }
+
+  /* Feature grid */
+  .platform-grid {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 720px) {
+    .platform-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1024px) {
+    .platform-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .feature-card {
+    position: relative;
+    background: linear-gradient(180deg, var(--surface), var(--surface-2));
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 1.1rem;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    outline: none;
+  }
+
+  .feature-card:hover,
+  .feature-card:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(0,0,0,.4);
+    border-color: rgba(125, 211, 252, .35);
+  }
+
+  .feature-icon {
+    width: 44px; height: 44px;
+    display: grid; place-items: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(79,195,247,.18), rgba(97,208,168,.18));
+    border: 1px solid rgba(255,255,255,.06);
+    margin-bottom: .85rem;
+  }
+  .feature-icon svg { width: 24px; height: 24px; }
+
+  .feature-title {
+    font-weight: 700;
+    letter-spacing: -.01em;
+    font-size: 1.05rem;
+    margin: 0 0 .4rem;
+  }
+
+  .feature-body { color: var(--muted); font-size: .975rem; }
+
+  .feature-cta {
+    margin-top: .9rem;
+    display: inline-flex;
+    gap: .5rem;
+    align-items: center;
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .feature-cta svg { width: 18px; height: 18px; }
+
+  /* Reveal animation (optional) */
+  .reveal { opacity: 0; transform: translateY(10px); }
+  .reveal.in { opacity: 1; transform: none; transition: opacity .6s ease, transform .6s ease; }
+
+  /* Focus visibility improvements */
+  .focus-ring:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: 14px;
+  }
+
+  /* Decorative orbs */
+  .orb {
+    position: absolute; inset: auto auto -120px -120px; width: 240px; height: 240px;
+    background: radial-gradient(closest-side, rgba(101, 200, 245, 0.18), transparent 70%);
+    filter: blur(6px);
+    pointer-events: none;
+    z-index: -1;
+  }
+  .orb.orb-right { inset: auto -120px -140px auto; background: radial-gradient(closest-side, rgba(97,208,168,.18), transparent 70%); }
+</style>
+
+<section id="services" class="platform-section" aria-labelledby="platform-heading" role="region">
+  <div class="orb" aria-hidden="true"></div>
+  <div class="orb orb-right" aria-hidden="true"></div>
+
+  <div class="platform-container">
+    <span class="platform-eyebrow" aria-hidden="true">Services</span>
+    <h2 id="platform-heading" class="platform-title">Our Services</h2>
+    <p class="platform-lede">A modular suite to help you acquire, store, analyze and act on field, market and geospatial data—securely and at scale.</p>
+
+    <div class="platform-grid" role="list">
+      <!-- Feature: Data Insights -->
+      <article class="feature-card reveal focus-ring" role="listitem" tabindex="0" aria-labelledby="f1-title">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Bar chart icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="10" width="4" height="10" rx="1"></rect>
+            <rect x="10" y="6" width="4" height="14" rx="1"></rect>
+            <rect x="17" y="3" width="4" height="17" rx="1"></rect>
+          </svg>
+        </div>
+        <h3 id="f1-title" class="feature-title">Data Insights</h3>
+        <p class="feature-body">Interactive dashboards and advanced analytics that turn raw records into decisions. Export-ready, role-based views and scheduled reports built in.</p>
+        <a class="feature-cta" href="#" aria-label="Learn more about Data Insights">Learn more
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Feature: Big Data Storage -->
+      <article class="feature-card reveal focus-ring" role="listitem" tabindex="0" aria-labelledby="f2-title">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Database icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="5" rx="8" ry="3.5"></ellipse>
+            <path d="M4 5v6c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5V5"/>
+            <path d="M4 11v6c0 1.9 3.6 3.5 8 3.5s8-1.6 8-3.5v-6"/>
+          </svg>
+        </div>
+        <h3 id="f2-title" class="feature-title">Big Data Storage</h3>
+        <p class="feature-body">Secure, scalable object + relational storage with lifecycle policies, encryption at rest/in transit, and automated backups.</p>
+        <a class="feature-cta" href="#" aria-label="Learn more about Big Data Storage">Explore storage
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Feature: Trainings and Linkages -->
+      <article class="feature-card reveal focus-ring" role="listitem" tabindex="0" aria-labelledby="f3-title">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Graduation cap icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 8l9-4 9 4-9 4-9-4z"/>
+            <path d="M21 10v4c0 2-4 4-9 4s-9-2-9-4v-4"/>
+          </svg>
+        </div>
+        <h3 id="f3-title" class="feature-title">Trainings & Linkages</h3>
+        <p class="feature-body">Capacity-building programs and curated partner connections to strengthen producer organizations and market actors.</p>
+        <a class="feature-cta" href="#" aria-label="See Trainings and Linkages">See programs
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Feature: Mobile Data Capture -->
+      <article class="feature-card reveal focus-ring" role="listitem" tabindex="0" aria-labelledby="f4-title">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Smartphone icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="7" y="2" width="10" height="20" rx="2"/>
+            <circle cx="12" cy="18" r="1"/>
+          </svg>
+        </div>
+        <h3 id="f4-title" class="feature-title">Mobile Data Capture</h3>
+        <p class="feature-body">Offline-first survey tools, image/geo tagging and validation flows that sync reliably from the field.</p>
+        <a class="feature-cta" href="#" aria-label="Learn more about Mobile Data Capture">Try mobile suite
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Feature: Location Based Services -->
+      <article class="feature-card reveal focus-ring" role="listitem" tabindex="0" aria-labelledby="f5-title">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Pin/Map icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/>
+            <circle cx="12" cy="10" r="2.6"/>
+          </svg>
+        </div>
+        <h3 id="f5-title" class="feature-title">Location-Based Services</h3>
+        <p class="feature-body">Geofencing, routes, and proximity insights using satellite + ground data for precise intervention mapping.</p>
+        <a class="feature-cta" href="#" aria-label="Learn more about Location Based Services">Map features
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Feature: Insurance Services -->
+      <article class="feature-card reveal focus-ring" role="listitem" tabindex="0" aria-labelledby="f6-title">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Shield/Check icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l8 3v7c0 5-4 9-8 10-4-1-8-5-8-10V5l8-3z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <h3 id="f6-title" class="feature-title">Insurance Services</h3>
+        <p class="feature-body">Index and parametric offerings, enrollment workflows, claims tracking and partner integrations.</p>
+        <a class="feature-cta" href="#" aria-label="Explore Insurance Services">Explore cover
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+
+      <!-- Feature: Satellite Monitoring -->
+      <article class="feature-card reveal focus-ring" role="listitem" tabindex="0" aria-labelledby="f7-title">
+        <div class="feature-icon" aria-hidden="true">
+          <!-- Satellite icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="5" height="5" rx="1"/>
+            <rect x="16" y="16" width="5" height="5" rx="1"/>
+            <path d="M8 5l8 8M10 14l-2 2M14 10l2-2"/>
+          </svg>
+        </div>
+        <h3 id="f7-title" class="feature-title">Satellite Monitoring</h3>
+        <p class="feature-body">Vegetation and moisture indices, anomaly alerts and time‑series layers over AOIs for proactive response.</p>
+        <a class="feature-cta" href="#" aria-label="Learn more about Satellite Monitoring">View demos
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Optional: intersection observer to reveal cards when scrolled into view
+  (function() {
+    const cards = document.querySelectorAll('.feature-card');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    cards.forEach(c => {
+      c.classList.add('reveal');
+      io.observe(c);
+    });
+  })();
+</script>
+
+
+    <!-- PROJECTS -->
+    <section id="projects" class="section projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-tabs">
+          <button class="tab-btn active" data-target="completed">Completed</button>
+          <button class="tab-btn" data-target="ongoing">Ongoing</button>
+        </div>
+        <div id="completed" class="projects-panel active">
+          <div class="projects-grid">
+            <article class="project-item">
+              <img src="assets/projects/completed1.jpg" alt="Completed project 1">
+              <div class="project-meta">
+                <h4>Water Supply Study — Homa Bay</h4>
+                <p class="muted">Feasibility study completed in 2023.</p>
+                <button class="btn small view-media" data-video="https://www.youtube.com/embed/example">View Video</button>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div id="ongoing" class="projects-panel">
+          <div class="projects-grid">
+            <article class="project-item">
+              <img src="assets/projects/ongoing1.jpg" alt="Ongoing project 1">
+              <div class="project-meta">
+                <h4>RIPE Monitoring — Lake Region</h4>
+                <p class="muted">Monitoring and dashboarding; completion 2026.</p>
+                <button class="btn small view-media" data-video="assets/videos/ongoing1.mp4">Play Video</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2>Contact</h2>
+        <form id="contact-form" class="contact-form" novalidate>
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" required>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <button class="btn primary" type="submit">Send Message</button>
+        </form>
+        <div id="contact-feedback" role="status"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year"></span> Big Consultants Ltd</small>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
