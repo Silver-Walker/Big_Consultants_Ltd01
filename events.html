@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Events Calendar — Big Consultants Ltd</title>
+  <link rel="stylesheet" href="styles/style.css">
+  <link rel="stylesheet" href="styles/events.css">
+  <style>
+    /* Add minimal styles for calendar header/arrows if not in events.css */
+    .calendar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      gap: 0.5rem;
+    }
+    .calendar-nav-btn {
+      background: #4fc3f7;
+      border: none;
+      color: #0f1520;
+      font-size: 1.2rem;
+      border-radius: 4px;
+      padding: 0.2rem 0.7rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .calendar-nav-btn:hover {
+      background: #61d0a8;
+      color: #fff;
+    }
+    .calendar-month-label {
+      font-weight: 600;
+      font-size: 1.1rem;
+      flex: 1;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt="Big Consultants Ltd logo" class="logo" />
+      </a>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <div class="nav-dropdown" tabindex="0">
+          <a href="projects.html" class="dropdown-toggle" id="projectsDropdown" aria-haspopup="true" aria-expanded="false">Projects ▼</a>
+          <div class="dropdown-menu" id="projectsMenu">
+            <a href="projects.html">All Projects</a>
+            <a href="events.html">Events Calendar</a>
+          </div>
+        </div>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section events">
+      <div class="container events-container">
+        <div class="calendar-column">
+          <h2>Events Calendar</h2>
+          <div id="calendar"></div>
+        </div>
+        <div class="event-details-column">
+          <h3>Event Details</h3>
+          <div id="event-details">
+            <p>Select a date to see events.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+ <footer class="site-footer">
+  <div class="container">
+    <div class="footer-container">
+      <div class="footer-text">
+        <p>&copy; 2025 Big Consultants Ltd. | All Rights Reserved.</p>
+      </div>
+      <div class="footer-icons">
+        <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+          <img src="images/facebook logo.png" alt="Facebook">
+        </a>
+        <a href="https://XTwitter.com" target="_blank" aria-label="Twitter">
+          <img src="images/XTwitter.png" alt="Twitter">
+        </a>
+        <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+          <img src="images/LinkedIn_logo.png" alt="LinkedIn">
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+  <script>
+    // Demo events (add more as needed)
+    const events = {
+      "2025-08-20": [
+        { title: "Stakeholder Workshop", desc: "A workshop for project stakeholders at Kisumu HQ." }
+      ],
+      "2025-08-22": [
+        { title: "Training Session", desc: "Capacity building for local partners." }
+      ],
+      "2025-09-05": [
+        { title: "September Kickoff", desc: "Kickoff meeting for September projects." }
+      ]
+    };
+
+    // Calendar state
+    let calendarYear = (new Date()).getFullYear();
+    let calendarMonth = (new Date()).getMonth();
+
+    function renderCalendar(year = calendarYear, month = calendarMonth) {
+      calendarYear = year;
+      calendarMonth = month;
+      const calendar = document.getElementById('calendar');
+      const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+      ];
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+      const firstDay = new Date(year, month, 1).getDay();
+
+      // Calendar header with navigation
+      let html = `
+        <div class="calendar-header">
+          <button class="calendar-nav-btn" id="prevYear" title="Previous Year">&laquo;</button>
+          <button class="calendar-nav-btn" id="prevMonth" title="Previous Month">&lsaquo;</button>
+          <span class="calendar-month-label">${monthNames[month]} ${year}</span>
+          <button class="calendar-nav-btn" id="nextMonth" title="Next Month">&rsaquo;</button>
+          <button class="calendar-nav-btn" id="nextYear" title="Next Year">&raquo;</button>
+        </div>
+        <table class="calendar-table">
+          <thead>
+            <tr>
+              <th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th>
+              <th>Thu</th><th>Fri</th><th>Sat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+      `;
+      // Empty cells before first day
+      for (let i = 0; i < firstDay; i++) html += `<td></td>`;
+      // Days
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateStr = `${year}-${String(month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        html += `<td class="calendar-day${events[dateStr] ? ' has-event' : ''}" data-date="${dateStr}">${d}</td>`;
+        if ((firstDay + d) % 7 === 0 && d !== daysInMonth) html += `</tr><tr>`;
+      }
+      // Fill remaining cells
+      const lastDay = new Date(year, month, daysInMonth).getDay();
+      for (let i = lastDay + 1; i <= 6; i++) html += `<td></td>`;
+      html += `</tr></tbody></table>`;
+      calendar.innerHTML = html;
+
+      // Navigation events
+      document.getElementById('prevMonth').onclick = () => {
+        let m = calendarMonth - 1, y = calendarYear;
+        if (m < 0) { m = 11; y--; }
+        renderCalendar(y, m);
+      };
+      document.getElementById('nextMonth').onclick = () => {
+        let m = calendarMonth + 1, y = calendarYear;
+        if (m > 11) { m = 0; y++; }
+        renderCalendar(y, m);
+      };
+      document.getElementById('prevYear').onclick = () => renderCalendar(calendarYear - 1, calendarMonth);
+      document.getElementById('nextYear').onclick = () => renderCalendar(calendarYear + 1, calendarMonth);
+
+      // Day click events
+      document.querySelectorAll('.calendar-day').forEach(td => {
+        td.addEventListener('click', function() {
+          showEvents(this.dataset.date);
+        });
+      });
+    }
+
+    function showEvents(dateStr) {
+      const details = document.getElementById('event-details');
+      if (events[dateStr]) {
+        details.innerHTML = events[dateStr].map(ev =>
+          `<div class="event-card"><h4>${ev.title}</h4><p>${ev.desc}</p></div>`
+        ).join('');
+      } else {
+        details.innerHTML = `<p>No events for this date.</p>`;
+      }
+    }
+
+    renderCalendar();
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

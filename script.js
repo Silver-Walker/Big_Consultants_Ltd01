@@ -113,3 +113,32 @@ if (contactForm) {
 
 /* ====== 6. Auto Year in Footer ====== */
 document.getElementById('year').textContent = new Date().getFullYear();
+
+document.addEventListener('DOMContentLoaded', function() {
+  const dropdown = document.querySelector('.nav-dropdown');
+  const toggle = dropdown.querySelector('.dropdown-toggle');
+  const menu = dropdown.querySelector('.dropdown-menu');
+
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault();
+    dropdown.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', dropdown.classList.contains('open'));
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(e) {
+    if (!dropdown.contains(e.target)) {
+      dropdown.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // Optional: close on Escape key
+  dropdown.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      dropdown.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.focus();
+    }
+  });
+});

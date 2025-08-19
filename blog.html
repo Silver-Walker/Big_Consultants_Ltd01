@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Blog — Big Consultants Ltd</title>
+  <link rel="stylesheet" href="styles/blog.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt="Big Consultants Ltd logo" class="logo" />
+      </a>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="blog.html" class="active">Blog</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+</header>
+
+  <main>
+    <section class="section blog">
+      <div class="container">
+        <h1>Our Blog</h1>
+        <p class="muted">Insights, updates, and stories from Big Consultants Ltd.</p>
+        
+        
+        <div class="blog-list">
+          <!-- Blog Post 1 -->
+          <article class="blog-post">
+            <h2><a href="#">How Monitoring & Evaluation Drives Project Success</a></h2>
+            <p class="muted">August 2025 &mdash; <strong>By Big Consultants Team</strong></p>
+            <p>
+              Discover the importance of monitoring and evaluation in ensuring sustainable project outcomes and maximizing impact for communities.
+            </p>
+            <a href="#" class="btn small">Read More</a>
+          </article>
+          <!-- Blog Post 2 -->
+          <article class="blog-post">
+            <h2><a href="#">Trends in Policy Analysis for Development</a></h2>
+            <p class="muted">July 2025 &mdash; <strong>By Big Consultants Team</strong></p>
+            <p>
+              Explore the latest trends and methodologies in policy analysis that are shaping the future of development projects in Africa.
+            </p>
+            <a href="#" class="btn small">Read More</a>
+          </article>
+          <!-- Add more blog posts as needed -->
+        </div>
+      </div>
+    </section>
+    <!-- Add this section above </main> but after the opening <main> tag -->
+
+
+
+  </main>
+  
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-text">
+          <small>© <span id="year"></span> Big Consultants Ltd | All Rights Reserved.</small>
+        </div>
+        <div class="footer-icons">
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <img src="images/facebook logo.png" alt="Facebook">
+          </a>
+          <a href="https://XTwitter.com" target="_blank" aria-label="Twitter">
+            <img src="images/XTwitter.png" alt="Twitter">
+          </a>
+          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+            <img src="images/LinkedIn_logo.png" alt="LinkedIn">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Update year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

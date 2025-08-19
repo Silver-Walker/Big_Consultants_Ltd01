@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Projects — Big Consultants Ltd</title>
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt="Big Consultants Ltd logo" class="logo" />
+      </a>
+      <nav id="site-nav" class="site-nav" aria-label="Main navigation">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <div class="nav-dropdown">
+          <a href="projects.html" class="dropdown-toggle">Projects ▼</a>
+          <div class="dropdown-menu">
+            <a href="projects.html">All Projects</a>
+            <a href="events.html">Events Calendar</a>
+          </div>
+        </div>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section projects">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-tabs">
+          <button class="tab-btn active" data-target="completed">Completed</button>
+          <button class="tab-btn" data-target="ongoing">Ongoing</button>
+        </div>
+        <div id="completed" class="projects-panel active">
+          <div class="projects-grid">
+            <article class="project-item">
+              <img src="assets/projects/completed1.jpg" alt="Completed project 1">
+              <div class="project-meta">
+                <h4>Water Supply Study — Homa Bay</h4>
+                <p class="muted">Feasibility study completed in 2023.</p>
+                <button class="btn small view-media" data-video="https://www.youtube.com/embed/example">View Video</button>
+              </div>
+            </article>
+            <!-- Add more completed projects here -->
+          </div>
+        </div>
+        <div id="ongoing" class="projects-panel">
+          <div class="projects-grid">
+            <article class="project-item">
+              <img src="assets/projects/ongoing1.jpg" alt="Ongoing project 1">
+              <div class="project-meta">
+                <h4>RIPE Monitoring — Lake Region</h4>
+                <p class="muted">Monitoring and dashboarding; completion 2026.</p>
+                <button class="btn small view-media" data-video="assets/videos/ongoing1.mp4">Play Video</button>
+              </div>
+            </article>
+            <!-- Add more ongoing projects here -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-text">
+          <small>© <span id="year"></span> Big Consultants Ltd | All Rights Reserved.</small>
+        </div>
+        <div class="footer-icons">
+          <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+            <img src="images/facebook logo.png" alt="Facebook">
+          </a>
+          <a href="https://XTwitter.com" target="_blank" aria-label="Twitter">
+            <img src="images/XTwitter.png" alt="Twitter">
+          </a>
+          <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
+            <img src="images/LinkedIn_logo.png" alt="LinkedIn">
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.projects-panel').forEach(p => p.classList.remove('active'));
+        this.classList.add('active');
+        document.getElementById(this.dataset.target).classList.add('active');
+      });
+    });
+    // Year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

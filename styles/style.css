@@ -43,7 +43,7 @@ body.admin-bg {
 ================================ */
 .site-header {
   background: var(--card-bg);
-  box-shadow: 0 1px 6px rgba(10, 10, 10, 0.05);
+  box-shadow: 0 1px 6px rgba(215, 212, 212, 0.05);
   position: sticky;
   top: 0;
   z-index: 30;
@@ -290,10 +290,72 @@ body.admin-bg {
 ================================ */
 .site-footer {
   padding: 1rem 0;
-  text-align: center;
   color: var(--muted);
-  font-size: .9rem;
+  font-size: 1.1rem;   /* footer size*/
   margin-top: 1rem;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-text {
+  flex: 1;
+  text-align: center;
+}
+
+.footer-icons {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.footer-icons img {
+  height: 30px;
+  width: 30px;
+  object-fit: contain;
+  transition: transform 0.2s;
+}
+
+.footer-icons img:hover {
+  transform: scale(1.1);
+}
+
+/* Individual social media icon styles */
+.footer-icons a[href*="facebook.com"] img {
+  height: 38px;
+  width: 38px;
+  transition: all 0.3s ease;
+}
+
+.footer-icons a[href*="facebook.com"]:hover img {
+  filter: grayscale(0%);
+  transform: scale(1.2);
+}
+
+.footer-icons a[href*="XTwitter.com"] img {
+  height: 47px;
+  width: 47px;
+  transition: all 0.3s ease;
+}
+
+.footer-icons a[href*="XTwitter.com"]:hover img {
+  filter: brightness(1);
+  transform: scale(1.2);
+}
+
+.footer-icons a[href*="linkedin.com"] img {
+  height: 25px;
+  width: 25px;
+  transition: all 0.3s ease;
+}
+
+.footer-icons a[href*="linkedin.com"]:hover img {
+  filter: brightness(1) contrast(1);
+  transform: scale(1.2);
 }
 
 /* ================================
@@ -324,3 +386,75 @@ body.admin-bg {
     display: flex;
   }
 }
+
+
+
+/* ...existing code... */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-toggle {
+  cursor: pointer;
+}
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: #fff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  z-index: 1;
+}
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  display: block;
+}
+.dropdown-menu a {
+  color: #222c36;
+  padding: 0.7rem 1.2rem;
+  text-decoration: none;
+  display: block;
+}
+.dropdown-menu a:hover {
+  background: #f4f8fb;
+}
+/* ...existing code... */
+
+
+
+/* ...existing code... */
+.nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+.dropdown-toggle {
+  cursor: pointer;
+  user-select: none;
+}
+.dropdown-menu {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  background: #fff;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+  z-index: 1;
+  transition: opacity 0.25s;
+}
+.nav-dropdown.open .dropdown-menu {
+  display: block;
+  opacity: 1;
+  pointer-events: auto;
+}
+.dropdown-menu a {
+  color: #222c36;
+  padding: 0.7rem 1.2rem;
+  text-decoration: none;
+  display: block;
+  transition: background 0.15s;
+}
+.dropdown-menu a:hover {
+  background: #f4f8fb;
+}
+/* ...existing code... */
